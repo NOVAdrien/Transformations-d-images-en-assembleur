@@ -11,7 +11,7 @@ typedef struct {
     Pixel *data;
 } Image;
 
-int lire_ppm(const char *filename, Image *img);
-int ecrire_ppm(const char *filename, const Image *img);
+int lire_xpm(const char *filename, Image *img);
+int ecrire_xpm(const char *filename, const Image *img);
 
 #endif

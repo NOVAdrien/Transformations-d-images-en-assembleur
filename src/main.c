@@ -7,7 +7,7 @@ int main() {
     Image img_entree;
 
     // Etape 1 : lire l'image d'entree
-    if (!lire_ppm("images/image_entree.ppm", &img_entree)) {
+    if (!lire_xpm("images/image_entree.xpm", &img_entree)) {
         printf("Erreur : impossible de lire l'image.\n");
         return 1;
     }
@@ -25,7 +25,7 @@ int main() {
         return 1;
     }
 
-    ecrire_ppm("images/image_similitude.ppm", img_similitude);
+    ecrire_xpm("images/image_similitude.xpm", img_similitude);
 
     // Etape 3 : appliquer une translation
     int dx = 50;  // vers la droite
@@ -40,7 +40,7 @@ int main() {
         return 1;
     }
 
-    ecrire_ppm("images/image_translation.ppm", img_translatee);
+    ecrire_xpm("images/image_translation.xpm", img_translatee);
 
     // Etape 4 : liberer la memoire
     free(img_entree.data);

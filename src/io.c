@@ -87,19 +87,53 @@ int ecrire_xpm(const char *filename, const Image *img) {
     FILE *f = fopen(filename, "w");
     if (!f) return 0;
 
-    // Écrire l'en-tête XPM
+    // Étape 1 : Identifier toutes les couleurs uniques dans l'image
+    Pixel *palette = NULL;
+    int palette_size = 0;
+    int max_palette_size = img->width * img->height;
+    palette = malloc(max_palette_size * sizeof(Pixel));
+    if (!palette) {
+        fclose(f);
+        return 0;
+    }
+
+    for (int i = 0; i < img->width * img->height; i++) {
+        Pixel current = img->data[i];
+        int found = 0;
+        for (int j = 0; j < palette_size; j++) {
+            if (palette[j].r == current.r && palette[j].g == current.g && palette[j].b == current.b) {
+                found = 1;
+                break;
+            }
+        }
+        if (!found) {
+            palette[palette_size++] = current;
+        }
+    }
+
+    // Étape 2 : Écrire l'en-tête XPM avec la palette
     fprintf(f, "/* XPM */\n");
     fprintf(f, "static char *image_xpm[] = {\n");
-    fprintf(f, "\"%d %d 1 1\",\n", img->width, img->height); // 1 couleur (blanc)
+    fprintf(f, "\"%d %d %d 1\",\n", img->width, img->height, palette_size);
 
-    // Palette (1 couleur : blanc)
-    fprintf(f, "\"X c #FFFFFF\",\n");
+    // Écrire la palette
+    for (int i = 0; i < palette_size; i++) {
+        char symbol = 'A' + i; // Utiliser des lettres comme symboles
+        fprintf(f, "\"%c c #%02X%02X%02X\",\n", symbol, palette[i].r, palette[i].g, palette[i].b);
+    }
 
-    // Écrire les pixels
+    // Étape 3 : Écrire les pixels en utilisant les symboles de la palette
     for (int y = 0; y < img->height; y++) {
         fputc('"', f);
         for (int x = 0; x < img->width; x++) {
-            fputc('X', f);
+            Pixel current = img->data[x + y * img->width];
+            for (int c = 0; c < palette_size; c++) {
+                if (palette[c].r == current.r && palette[c].g == current.g && palette[c].b == current.b) {
+                    char symbol = 'A' + c;
+                    fputc(symbol, f);
+                    break;
+                }
+            }
         }
         fputc('"', f);
         if (y < img->height - 1) fputc(',', f);
@@ -108,5 +142,6 @@ int ecrire_xpm(const char *filename, const Image *img) {
 
     fprintf(f, "};\n");
     fclose(f);
+    free(palette);
     return 1;
 }

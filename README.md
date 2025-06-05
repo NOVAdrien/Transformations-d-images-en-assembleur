@@ -60,7 +60,7 @@ Chaque transformation génère un fichier de sortie :
 
 ### Pour l'assembleur :
 
-Exécuter le fichier avec le menu ou la touche f5.
+Le fichier .xpm qui sera transformé par défaut est donnée dans le .data avec son chemin absolut `InputFilePath`, à modifier si besoin. Exécuter le fichier avec le menu ou la touche f5.
 
 ---
 
@@ -88,7 +88,7 @@ Pour supprimer les fichiers générés en C (sauf `logo.xpm`) :
 
 ---
 
-## 👥 Auteurs
+## Auteurs
 
 - Kareem Abi Kaedbey
 - Adrien Panguel

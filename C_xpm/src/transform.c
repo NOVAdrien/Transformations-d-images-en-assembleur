@@ -40,7 +40,7 @@ XPMImage* translate_xpm2(const XPMImage *img, int dx, int dy) {
         for (int x = 0; x < img->width; ++x) {
             int src_index = y * img->width + x;
             int dst_x = x + dx;
-            int dst_y = y + dy;
+            int dst_y = y - dy;
 
             if (dst_x >= 0 && dst_x < img->width &&
                 dst_y >= 0 && dst_y < img->height) {
@@ -169,53 +169,6 @@ XPMImage* rotate270_xpm2(const XPMImage *img) {
 
     return rotated;
 }
-
-
-
-XPMImage* scale_xpm2(const XPMImage *img, float factor) {
-    if (factor <= 0.0f) return NULL;
-
-    int new_width = (int)(img->width * factor);
-    int new_height = (int)(img->height * factor);
-
-    if (new_width == 0 || new_height == 0)
-        return NULL;
-
-    XPMImage *scaled = malloc(sizeof(XPMImage));
-    scaled->width = new_width;
-    scaled->height = new_height;
-    scaled->num_colors = img->num_colors;
-    scaled->chars_per_pixel = img->chars_per_pixel;
-    scaled->pixels = malloc(new_width * new_height);
-
-    // Copier palette
-    for (int i = 0; i < img->num_colors; ++i) {
-        scaled->symbols[i] = img->symbols[i];
-        strncpy(scaled->colors[i], img->colors[i], 16);
-    }
-
-    // Fond
-    char background = ' ';
-    for (int i = 0; i < img->num_colors; ++i)
-        if (strcmp(img->colors[i], "None") == 0)
-            background = img->symbols[i];
-
-    for (int i = 0; i < new_width * new_height; ++i)
-        scaled->pixels[i] = background;
-
-    // Mapping inverse
-    for (int y = 0; y < new_height; ++y) {
-        for (int x = 0; x < new_width; ++x) {
-            int src_x = (int)(x / factor);
-            int src_y = (int)(y / factor);
-            char pixel = img->pixels[src_y * img->width + src_x];
-            scaled->pixels[y * new_width + x] = pixel;
-        }
-    }
-
-    return scaled;
-}
-
 
 
 XPMImage* homothety_xpm2(const XPMImage *img, float factor) {

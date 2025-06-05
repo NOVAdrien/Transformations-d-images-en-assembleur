@@ -23,11 +23,6 @@ XPMImage* rotate180_xpm2(const XPMImage *img);
 XPMImage* rotate270_xpm2(const XPMImage *img);
 
 
-// Applique une mise à l'échelle à l'image (agrandissement ou réduction).
-// Le facteur > 1 agrandit, < 1 réduit. Retourne une nouvelle image allouée dynamiquement.
-XPMImage* scale_xpm2(const XPMImage *img, float factor);
-
-
 // Applique une homothétie centrée de facteur k à l'image.
 // Le centre est celui de l'image. Retourne une nouvelle image allouée dynamiquement.
 XPMImage* homothety_xpm2(const XPMImage *img, float factor);

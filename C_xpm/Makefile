@@ -2,7 +2,7 @@
 EXEC = xpm2_app
 
 # Fichiers source et objets
-SRC = main.c xpm2.c transform.c
+SRC = ./src/main.c ./src/xpm2.c ./src/transform.c
 OBJ = $(SRC:.c=.o)
 
 # Compilateur et options
@@ -21,6 +21,7 @@ $(EXEC): $(OBJ)
 clean:
 	find . -maxdepth 1 -name "*.xpm" ! -name "logo.xpm" -delete
 	rm -f $(EXEC) *.o
+	rm -f ./images/*.xpm
 
 
 .PHONY: all clean

@@ -38,27 +38,27 @@ int main() {
                 printf("dy (vertical) : ");
                 scanf("%d", &dy);
                 result = translate_xpm2(img, dx, dy);
-                strcpy(outname, "translated.xpm");
+                strcpy(outname, "./images/translated.xpm");
                 break;
             }
             case 2:
                 result = rotate90_xpm2(img);
-                strcpy(outname, "rotated90.xpm");
+                strcpy(outname, "./images/rotated90.xpm");
                 break;
             case 3:
                 result = rotate180_xpm2(img);
-                strcpy(outname, "rotated180.xpm");
+                strcpy(outname, "./images/rotated180.xpm");
                 break;
             case 4:
                 result = rotate270_xpm2(img);
-                strcpy(outname, "rotated270.xpm");
+                strcpy(outname, "./images/rotated270.xpm");
                 break;
             case 5: {
                 float factor;
                 printf("Facteur d'homothétie (> 0) : ");
                 scanf("%f", &factor);
                 result = homothety_xpm2(img, factor);
-                strcpy(outname, "homothety.xpm");
+                strcpy(outname, "./images/homothety.xpm");
                 break;
             }
             case 6:

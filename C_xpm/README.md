@@ -4,7 +4,7 @@ Ce projet permet de lire, transformer et sauvegarder des images au format **XPM2
 
 ---
 
-## 📦 Contenu du projet
+## Contenu du projet
 
 - `main.c` : interface utilisateur interactive en ligne de commande
 - `xpm2.h` / `xpm2.c` : lecture et écriture de fichiers XPM2
@@ -15,7 +15,7 @@ Ce projet permet de lire, transformer et sauvegarder des images au format **XPM2
 
 ---
 
-## 🧰 Compilation
+## Compilation
 
 Dans le terminal, depuis le dossier du projet :
 
@@ -25,7 +25,7 @@ Cela génère l'exécutable `xpm2_app`.
 
 ---
 
-## 🚀 Lancer le programme
+## Lancer le programme
 
     ./xpm2_app
 
@@ -46,7 +46,7 @@ Chaque transformation génère un fichier de sortie :
 
 ---
 
-## 🧹 Nettoyage
+## Nettoyage
 
 Pour supprimer les fichiers générés (sauf `logo.xpm`) :
 
@@ -54,7 +54,7 @@ Pour supprimer les fichiers générés (sauf `logo.xpm`) :
 
 ---
 
-## 🧠 Remarques
+## Remarques
 
 - Le format utilisé est **XPM2** (lisible, non compilable C).
 - L'affichage ASCII permet de voir les pixels transformés.
@@ -63,12 +63,10 @@ Pour supprimer les fichiers générés (sauf `logo.xpm`) :
 
 ---
 
-## 📬 À faire ensuite (si besoin)
+## Approfondissements
 
 - Ajout d’un système de chaînage de transformations
-- Export en `.ppm` ou `.png`
-- Ajouter dans le main aussi la fonction scale (A voir si on la laisse ou pas)
-- Traduction en assembleur RISC-V de certaines fonctions !!!
+- Voir comment faire les mêmes transformations sur un fichier au format XPM1
 
 ---
 
